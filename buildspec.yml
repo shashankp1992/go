@@ -21,7 +21,7 @@ phases:
       # Print all environment variables (handy for AWS CodeBuild logs)
       - env
 
-#       # Install golint
+#       # Install golint  
 #       - go get -u github.com/golang/lint/golint
 
   pre_build: 
