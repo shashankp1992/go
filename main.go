@@ -1,11 +1,26 @@
 package main
 
-import "fmt"
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"runtime"
 
-func helloworld() string {
-	return "Hello World!!"
+	"github.com/aws/aws-lambda-go/events"
+	"github.com/aws/aws-lambda-go/lambda"
+)
+
+func Handler(_ context.Context, r events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+	data, _ := json.Marshal(map[string]interface{}{
+		"message": fmt.Sprintf("Hello World from Lambda with %s", runtime.Version()),
+		"event":   r,
+	})
+	return events.APIGatewayProxyResponse{
+		StatusCode: 200,
+		Body:       string(data),
+	}, nil
 }
 
 func main() {
-	fmt.Println(helloworld())
+	lambda.Start(Handler)
 }
