@@ -47,6 +47,8 @@ phases:
 
       # Build our go application
 #       - go build -o main
+      - go get github.com/aws/aws-lambda-go/events
+      - go get github.com/aws/aws-lambda-go/lambda
       - go build main.go
       - zip -m maindeploy.zip main
       
