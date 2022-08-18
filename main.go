@@ -10,4 +10,4 @@ func main() {
 }
 func handler() {
 	fmt.Println("Hello Lambda from Go")
-}
+} 
