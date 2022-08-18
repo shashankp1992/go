@@ -10,17 +10,9 @@ import (
 	"github.com/aws/aws-lambda-go/lambda"
 )
 
-func Handler(_ context.Context, r events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	data, _ := json.Marshal(map[string]interface{}{
-		"message": fmt.Sprintf("Hello World from Lambda with %s", runtime.Version()),
-		"event":   r,
-	})
-	return events.APIGatewayProxyResponse{
-		StatusCode: 200,
-		Body:       string(data),
-	}, nil
-}
-
 func main() {
-	lambda.Start(Handler)
+	lambda.Start(handler)
+}
+func handler() {
+	fmt.Println("Hello Lambda from Go")
 }
