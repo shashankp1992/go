@@ -6,7 +6,6 @@ env:
     PACKAGE: "github.com/shashankp1992/go"
 
 phases:
-
   install:
     commands:
       # Print all environment variables (handy for AWS CodeBuild logs)
@@ -15,14 +14,10 @@ phases:
   build:
     commands:
       # Build our go application
-#       - go build -o main
       - go get github.com/aws/aws-lambda-go/events
       - go get github.com/aws/aws-lambda-go/lambda
       - go build main.go
       - zip -m maindeploy.zip main
-      
-      # Package our application with AWS SAM
-#       - aws cloudformation package --template-file template.yml --s3-bucket ${S3_BUCKET} --output-template-file packaged.yml
 
   post_build:
     commands:
@@ -30,6 +25,3 @@ phases:
       - aws lambda update-function-code --function-name codedeployment --zip-file fileb://maindeploy.zip
       - echo "DONE!!"
 
-# artifacts:
-#   files:
-#     - packaged.yml
