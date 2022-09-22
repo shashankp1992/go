@@ -9,5 +9,5 @@ func main() {
 	lambda.Start(handler)
 }
 func handler() {
-	fmt.Println("Hello Lambda from Go")
+	fmt.Println("Hello Lambda from Go demo")
 } 
